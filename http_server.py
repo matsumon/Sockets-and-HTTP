@@ -9,15 +9,20 @@ serverData= "HTTP/1.1 200 OK\r\n"\
 "<html>Congratulations! You've downloaded the first Wireshark lab file!</html>\r\n"
 
 # setting up random port number
-# serverPort = random.randint(1023,12000)
-serverPort = 3001
+serverPort = random.randint(1023,12000)
+# serverPort = 3001
 print("Server Port Number", serverPort)
 
 # creating TCP socket
 serverSocket = socket(AF_INET,SOCK_STREAM)
 
+#getfqdn gets the fully qualified domain name. Because the parameter is left blank
+#this corresponds to the current local host
+serverHost = getfqdn()
+print("Server Host:",serverHost)
+
 # Binding 2nd param port number and 1st param is hostname  This is the handshake socket
-serverSocket.bind(('127.0.0.1', serverPort))
+serverSocket.bind((serverHost, serverPort))
 
 # Setting up maximum amount of listening sockets, this is the handshake socket
 serverSocket.listen(1)
