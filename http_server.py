@@ -1,4 +1,4 @@
-# Sources Used: A top down approach by Kurose Ross
+# Sources Used: A top down approach by Kurose Ross And https://docs.python.org/3/library/socket.html
 from socket import *
 import random
 import time
