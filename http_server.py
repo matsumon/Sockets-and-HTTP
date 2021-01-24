@@ -17,8 +17,14 @@ print("Server Port Number", serverPort)
 serverSocket = socket(AF_INET,SOCK_STREAM)
 
 #getfqdn gets the fully qualified domain name. Because the parameter is left blank
-#this corresponds to the current local host
+#this corresponds to the current local host. However if localhost is not on the
+#flip server this will not work. So i check for flip and if its not there I
+#use gethostbyname to get the ip address 127.0.0.1
 serverHost = getfqdn()
+if "flip" in serverHost:
+    serverHost = serverHost
+else:
+    serverHost = gethostbyname('localhost')
 print("Server Host:",serverHost)
 
 # Binding 2nd param port number and 1st param is hostname  This is the handshake socket
